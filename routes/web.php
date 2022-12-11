@@ -15,6 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('listings', [
+        'heading' => 'Latest Listings',
+        'listings' => [
+            [
+                'id' => 1,
+                'title' => 'Listing One',
+                'description' => 'This is the first listing'
+            ],
+            [
+                'id' => 2,
+                'title' => 'Listing Second',
+                'description' => 'This is the second listing'
+            ]
+        ]
+    ]);
 });
-
