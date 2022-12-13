@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Listing;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,21 +13,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//All Listings
 Route::get('/', function () {
     return view('listings', [
         'heading' => 'Latest Listings',
-        'listings' => [
-            [
-                'id' => 1,
-                'title' => 'Listing One',
-                'description' => 'This is the first listing'
-            ],
-            [
-                'id' => 2,
-                'title' => 'Listing Second',
-                'description' => 'This is the second listing'
-            ]
-        ]
+        'listings' => Listing::all()
+    ]);
+});
+
+//Single Listings 
+Route::get('/listings/{id}', function($id){
+    return view('listing',[
+        'listing' => Listing::find($id)
     ]);
 });
